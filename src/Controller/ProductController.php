@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\Type\CommentType;
+use App\Form\Type\ProductType;
 
 
 class ProductController extends AbstractController
@@ -73,11 +74,25 @@ class ProductController extends AbstractController
         $entityManager->flush();
     }
 
-    #[Route('/product/create', name: 'create_product')]
-    public function createProduct(ManagerRegistry $doctrine):Response
+    #[Route('/create', name: 'create_product')]
+    public function createProduct(ManagerRegistry $doctrine, Request $request):Response
     {
-        return $this->renderForm('', [
-
+        $allCategories = $doctrine->getRepository(Category::class)->findAll();
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $product = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
+            return $this->redirectToRoute('home');
+        }
+        
+        return $this->renderForm('product/create-product.html.twig', [
+            'allCategories' => $allCategories,
+            'pageTitle' => "Ajouter un nouvel animal",
+            'productForm' => $form
         ]);
     }
 

@@ -4,9 +4,9 @@
 
 <section id="category-list">
     <h1 class="text-center mb-5">{% if catimage is defined %}<img src="{{ asset(catimage)}}" alt=""> {{catname}} <img src="{{ asset(catimage)}}" alt="">{% else %}{{catname}}{% endif %}</h1>
-    <div class="d-flex justify-content-between">
+    <div class="row justify-content-between">
         {% for product in products %}
-        <article class="card border-0" style="width: 18rem;">
+        <article class="card border-0 m-3" style="width: 18rem;">
             <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
             <div class="card-body text-center">
                 <!-- <h5 class="card-title">{{product.name}}</h5> -->

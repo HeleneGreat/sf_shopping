@@ -71,9 +71,16 @@ button[type="submit"]:hover{
 }
 
 .btn.bg-pink:hover,
+button[type="submit"]:active,
 button[type="submit"]:hover{
-    background-color: rgb(159, 49, 77);
-    border-color: rgb(159, 49, 77);
+    background-color: rgb(159, 49, 77)!important;
+    border-color: rgb(159, 49, 77)!important;
+}
+
+.form-control:focus,
+button[type="submit"]:focus{
+    box-shadow: 0 0 0 0.2rem rgb(159 49 77 / 50%)!important;
+    border-color: var(--pink);
 }
 
 header .website{

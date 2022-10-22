@@ -1,0 +1,19 @@
+{{include('layouts/header.html.twig')}}
+
+
+<section id="create-product" class="mt-5">
+    <h1>Ajouter un nouvel animal</h1>
+    <div class="row  d-flex justify-content-center">
+        <div class="col-md-8">
+            <article class="card p-3 mt-2">
+
+                {% form_theme productForm 'bootstrap_5_layout.html.twig' %}
+                <div>
+                    {{form(productForm)}}
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+{{include('layouts/footer.html.twig')}}
