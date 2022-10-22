@@ -1,0 +1,58 @@
+{{include('layouts/header.html.twig')}}
+
+<section id="one-product">
+    <div class="d-flex">
+        <div class="image mr-5">
+            <img class="w-100" src="{{image}}" alt="Une photo de {{name}}">
+        </div>
+        <div class="description">
+            <h1>{{name}}</h1>
+            <p>{{description}}</p>
+        </div>
+    </div>
+</section>
+
+<section id="comments" class="mt-5">
+    <div id="new-comment" class="row  d-flex justify-content-center">
+        <div class="col-md-8">
+            <article class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="user">
+                        <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+                        <span>
+                            <small class="font-weight-bold pink">james_olesenn</small> 
+                        </span>
+                    </div>
+                </div>
+                {% form_theme commentForm 'bootstrap_5_layout.html.twig' %}
+                <div>
+                    {{form(commentForm)}}
+                </div>
+            </article>
+        </div>
+    </div>
+
+    
+
+    <div class="row  d-flex justify-content-center">
+        <div class="col-md-8">
+            {% for comment in allComments %}
+            <article class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="user d-flex flex-row align-items-center">
+                        <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+                        <span>
+                            <small class="font-weight-bold pink">james_olesenn</small> 
+                        </span>
+                    </div>
+                    <small>Le {{comment.date|date("j F Y")}} à {{comment.date|date("H:i")}}</small>
+                </div>
+                <div>
+                    <p><small class="font-weight-bold">{{comment.content}}</small></p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{{include('layouts/footer.html.twig')}}

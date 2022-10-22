@@ -1,0 +1,27 @@
+{{include('layouts/head.html.twig')}}
+
+<body class="bg-blue">
+    <header class="bg-violet text-white">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="{{path('home')}}">
+                <img class="bg-blue rounded border my-3 mr-5" src="{{ asset('images/logo.png') }}" alt="">
+            </a>
+            <div class="w-100">
+                <h2 class="website text-white">Animal Shopping</h2>
+                <ul class="d-flex justify-content-end">
+                    <li><h3><a class="text-white" href="{{path('home')}}">Accueil</a></h3></li>
+                    {% if allCategories is defined %}
+                    {% for category in allCategories %}
+                    <li class="ml-4">
+                        <h3>
+                            <a class="text-white" href="{{ path('category_products', {catId:category.id}) }}">{{ category.name }}</a>
+                        </h3>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">

@@ -1,0 +1,86 @@
+:root{
+ --blue: rgb(185, 216, 194);
+ --violet: #45425a;
+ --pink: rgb(218, 65, 103);
+}
+
+*{
+    color: var(--violet);
+}
+.container{
+    width: 80%;
+    max-width: 1200px;
+}
+
+.bg-violet{
+    background-color: var(--violet);
+}
+
+.bg-pink{
+    background-color: var(--pink);
+}
+
+.bg-blue{
+    background-color: var(--blue);
+}
+
+.violet{
+    color: var(--violet);
+}
+
+.pink{
+    color: var(--pink);
+}
+
+.blue{
+    color: var(--blue);
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+#home img{
+    width: 40px;
+    transform: rotate(45deg);
+}
+
+#category-list h1 img:last-of-type{
+    transform: scaleX(-1);
+}
+
+#category-list .btn{
+    transition: all .6s ease-in-out;
+}
+#category-list .btn:hover{
+    transform: scale(1.1);
+}
+
+#one-product .image{
+max-width: 40%;
+}
+
+button[type="submit"],
+button[type="submit"]:hover{
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
+.btn.bg-pink:hover,
+button[type="submit"]:hover{
+    background-color: rgb(159, 49, 77);
+    border-color: rgb(159, 49, 77);
+}
+
+header .website{
+    font-size: 50px;
+    font-family: 'Brush Script MT';
+}
+
+footer{
+    min-height: 100px;
+}

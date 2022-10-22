@@ -1,0 +1,21 @@
+{{include('layouts/header.html.twig')}}
+
+
+
+<section id="category-list">
+    <h1 class="text-center mb-5">{% if catimage is defined %}<img src="{{ asset(catimage)}}" alt=""> {{catname}} <img src="{{ asset(catimage)}}" alt="">{% else %}{{catname}}{% endif %}</h1>
+    <div class="d-flex justify-content-between">
+        {% for product in products %}
+        <article class="card border-0" style="width: 18rem;">
+            <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
+            <div class="card-body text-center">
+                <!-- <h5 class="card-title">{{product.name}}</h5> -->
+                <!-- <p class="card-text">Tarif : {{product.price}} €</p> -->
+                <a href="{{ path('one_product', {productId:product.id}) }}" class="btn bg-pink text-white">{{product.name}}</a>
+            </div>
+        </article>
+    {% endfor %}
+    </div>
+</section>
+
+{{include('layouts/footer.html.twig')}}

@@ -1,0 +1,25 @@
+{{include('layouts/header.html.twig')}}
+
+
+<section id="comments" class="mt-5">
+    <div id="new-comment" class="row  d-flex justify-content-center">
+        <div class="col-md-8">
+            <article class="card p-3 mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="user">
+                        <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+                        <span>
+                            <small class="font-weight-bold pink">james_olesenn</small> 
+                        </span>
+                    </div>
+                </div>
+                {% form_theme commentForm 'bootstrap_5_layout.html.twig' %}
+                <div>
+                    {{form(commentForm)}}
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+{{include('layouts/footer.html.twig')}}
