@@ -31,7 +31,7 @@ class ProductController extends AbstractController
 
 
     
-    #[Route('/product/{productId}', name: 'one_product')]
+    #[Route('/product/{productId}', name: 'one_product', requirements:['productId' => '\d+'])]
     public function oneProduct(ManagerRegistry $doctrine, int $productId, Request $request): Response
     {
         // Product's properties
@@ -74,7 +74,7 @@ class ProductController extends AbstractController
         $entityManager->flush();
     }
 
-    #[Route('/create', name: 'create_product')]
+    #[Route('/product/create', name: 'create_product', requirements:['create' => 'a-zA-Z'])]
     public function createProduct(ManagerRegistry $doctrine, Request $request):Response
     {
         $allCategories = $doctrine->getRepository(Category::class)->findAll();

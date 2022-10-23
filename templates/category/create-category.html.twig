@@ -2,14 +2,14 @@
 
 
 <section id="create-product" class="mt-5">
-    <h1 class="text-center">Ajouter un nouvel animal</h1>
+    <h1 class="text-center">Ajouter un nouveau type d'animal</h1>
     <div class="row  d-flex justify-content-center">
         <div class="col-md-8">
             <article class="card p-3 mt-2">
 
-                {% form_theme productForm 'bootstrap_5_layout.html.twig' %}
+                {% form_theme categoryForm 'bootstrap_5_layout.html.twig' %}
                 <div>
-                    {{form(productForm)}}
+                    {{form(categoryForm)}}
                 </div>
             </article>
         </div>
