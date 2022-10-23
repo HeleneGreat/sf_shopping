@@ -60,10 +60,6 @@ a{
     transform: scale(1.1);
 }
 
-#one-product .image{
-max-width: 40%;
-}
-
 button[type="submit"],
 button[type="submit"]:hover{
     background-color: var(--pink);
@@ -86,6 +82,22 @@ button[type="submit"]:focus{
 header .website{
     font-size: 50px;
     font-family: 'Brush Script MT';
+}
+
+#carousel .carousel-item img{
+    width: 570px;
+    height: 390px;
+    object-fit: cover;
+}
+
+#carousel .carousel-control-prev,
+#carousel .carousel-control-next{
+    font-size: 2rem;
+
+}
+
+#create-product select{
+    display: block;
 }
 
 footer{

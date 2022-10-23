@@ -1,11 +1,11 @@
 {{include('layouts/header.html.twig')}}
 
 <section id="one-product">
-    <div class="d-flex">
-        <div class="image mr-5">
-            <img class="w-100" src="{{image}}" alt="Une photo de {{name}}">
+    <div class="row justify-content-between">
+        <div class="col-12 col-lg-6 image">
+            <img class="w-100 rounded" src="{{image}}" alt="Une photo de {{name}}">
         </div>
-        <div class="description">
+        <div class="col-12 col-lg-6 description">
             <h1>{{name}}</h1>
             <p>{{description}}</p>
         </div>

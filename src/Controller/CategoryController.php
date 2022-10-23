@@ -11,18 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-
-    #[Route('/home', name: 'home')]
-    public function home(ManagerRegistry $doctrine): Response
-    {
-        $allCategories = $doctrine->getRepository(Category::class)->findAll();
-        return $this->render('home.html.twig', [
-            'allCategories' => $allCategories,
-            'pageTitle' => "Bienvenue",
-        ]);
-    }
-
-
     
     #[Route('/category/{catId}', name: 'category_products')]
     public function categoryProducts(ManagerRegistry $doctrine, int $catId): Response

@@ -24,12 +24,15 @@ class ProductType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => "Type d'animal",
-            ])
+                ])
             ->add('price', MoneyType::class, [
+                'label' => "Prix",
             ])
             ->add('description', TextareaType::class, [
+                'label' => "Description",
             ])
             ->add('shipping', MoneyType::class, [
+                'label' => "Frais de livraison",
             ])
             ->add('image', textType::class, [
                 'label' => "Lien vers l'image",
