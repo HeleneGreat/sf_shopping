@@ -13,7 +13,7 @@ use App\Form\Type\CategoryType;
 
 class CategoryController extends AbstractController
 {
-    
+
     #[Route('/category/{catId}', name: 'category_products', requirements:['catId' => '\d+'])]
     public function categoryProducts(ManagerRegistry $doctrine, int $catId): Response
     {

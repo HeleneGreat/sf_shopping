@@ -17,10 +17,11 @@ use App\Form\Type\ProductType;
 
 class ProductController extends AbstractController
 {
+
+    // List of all products (really slow)
     #[Route('/product', name: 'app_product')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        
         $products = $doctrine->getRepository(Product::class)->findAll();
         return $this->render('category/cat-products.html.twig', [
             'pageTitle' => "Tous les produits",
@@ -30,7 +31,7 @@ class ProductController extends AbstractController
     }
 
 
-    
+    // A product's details and comments
     #[Route('/product/{productId}', name: 'one_product', requirements:['productId' => '\d+'])]
     public function oneProduct(ManagerRegistry $doctrine, int $productId, Request $request): Response
     {
@@ -55,6 +56,7 @@ class ProductController extends AbstractController
         // Render view
         return $this->renderForm('product/one-product.html.twig', [
             'allCategories' => $allCategories,
+            'productId'=> $productId,
             'name' => $product->getName(),
             'image' => $product->getImage(),
             'description' => $product->getDescription(),
@@ -64,6 +66,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+    // Add a new comment
     public function newComment(ManagerRegistry $doctrine, $comment, $form, $productId){
         $comment = $form->getData();
         $product = $doctrine->getRepository(Product::class)->find($productId);
@@ -74,6 +77,35 @@ class ProductController extends AbstractController
         $entityManager->flush();
     }
 
+    // Form to modify a product
+    #[Route('/product/modify/{productId}', name: 'modify_product', requirements:['productId' => '\d+'])]
+    public function modifyProduct(ManagerRegistry $doctrine, int $productId, Request $request): Response
+    {
+        $allCategories = $doctrine->getRepository(Category::class)->findAll();
+        $product = $doctrine->getRepository(Product::class)->find($productId);
+        if(!$product){
+            throw $this->createNotFoundException(
+                'No product found for id ' . $productId
+            );
+        }
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('one_product', ['productId' => $productId]);
+        }
+        
+        return $this->renderForm('product/modify-product.html.twig', [
+            'allCategories' => $allCategories,
+            'name' => $product->getName(),
+            'image' => $product->getImage(),
+            'description' => $product->getDescription(),
+            'pageTitle' => $product->getName(),
+            'productForm' => $form,
+        ]);
+    }
+
+    // Form to create a new product
     #[Route('/product/create', name: 'create_product', requirements:['create' => 'a-zA-Z'])]
     public function createProduct(ManagerRegistry $doctrine, Request $request):Response
     {
@@ -95,6 +127,20 @@ class ProductController extends AbstractController
             'productForm' => $form
         ]);
     }
+
+    // Form to delete a product
+    #[Route('/product/delete/{productId}', name: 'delete_product', requirements:['productId' => '\d+'])]
+    public function deleteProduct(ManagerRegistry $doctrine, int $productId)
+    {
+        $product = $doctrine->getRepository(Product::class)->find($productId);
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('home');
+    }
+
+
 
 
 

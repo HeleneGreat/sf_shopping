@@ -100,6 +100,23 @@ header .website{
     display: block;
 }
 
+#one-product{
+    position: relative;
+}
+#one-product #products-buttons{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#one-product #products-buttons i{
+    font-size: 1.2rem;
+    padding-left: 10px;
+}
+#one-product #products-buttons i:hover{
+    color: var(--pink)
+}
+
 footer{
     min-height: 100px;
 }
